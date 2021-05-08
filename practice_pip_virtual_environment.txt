@@ -1,0 +1,105 @@
+pip list
+The pip list command returns the list of packages in the current environment. 
+It also returns the installed version for each package. Packages are listed in a case-insensitive sorted order.
+
+Dara@DESKTOP-PEADUN5 MINGW64 ~/Desktop/Axsos-Academy/Python/python_stack/my_environments (master)
+$ pip list
+Package    Version
+---------- -------
+pip        21.1.1
+setuptools 56.0.0
+(py3Env)
+
+this command returned the version of pip my environment has 
+
+
+>>>>>>>>>>>>>>>>
+
+deactivate
+This will deactivate the virtual environment
+
+Dara@DESKTOP-PEADUN5 MINGW64 ~/Desktop/Axsos-Academy/Python/python_stack/my_environments (master)
+$ deactivate
+this command deactivated my environment
+
+>>>>>>>>>>>>>>>>
+
+pip3 list
+pip3 always operates on the Python3 environment only, as pip2 does with Python2.
+pip operates on whichever environment is appropriate to the context
+
+Dara@DESKTOP-PEADUN5 MINGW64 ~/Desktop/Axsos-Academy/Python/python_stack/my_environments (master)
+$ pip3 list
+Package    Version
+---------- -------
+pip        21.1.1
+setuptools 56.0.0
+
+
+>>>>>>>>
+activate 
+Dara@DESKTOP-PEADUN5 MINGW64 ~/Desktop/Axsos-Academy/Python/python_stack/my_environments (master)
+$ source py3Env/Scripts/activate
+(py3Env)
+
+This acctivate my environment back
+
+>>>>>>>>
+pip install Django==2.2.4
+This will install new pip 
+
+Dara@DESKTOP-PEADUN5 MINGW64 ~/Desktop/Axsos-Academy/Python/python_stack/my_environments (master)
+$ pip install Django==2.2.4
+Collecting Django==2.2.4
+  Downloading Django-2.2.4-py3-none-any.whl (7.5 MB)
+Collecting pytz
+  Downloading pytz-2021.1-py2.py3-none-any.whl (510 kB)
+Collecting sqlparse
+  Downloading sqlparse-0.4.1-py3-none-any.whl (42 kB)
+Installing collected packages: sqlparse, pytz, Django
+Successfully installed Django-2.2.4 pytz-2021.1 sqlparse-0.4.1
+(py3Env)
+
+
+>>>>>>>>>
+pip freeze
+So pip freeze is a command that allows you to see what modules you have installed
+with the pip install command to this point.
+pip freeze is a very useful command, because it tells you which modules you've 
+installed with pip install and the versions of these modules that you are currently have installed
+on your computer.
+
+Dara@DESKTOP-PEADUN5 MINGW64 ~/Desktop
+$ pip freeze
+Django==2.2.4
+pytz==2021.1
+sqlparse==0.4.1
+
+
+>>>>>>>>>>
+$ pip uninstall Django
+this will uninstall the Django pip
+
+Dara@DESKTOP-PEADUN5 MINGW64 ~/Desktop
+$ pip uninstall Django
+Found existing installation: Django 2.2.4
+Uninstalling Django-2.2.4:
+  Would remove:
+    c:\users\dara\appdata\local\programs\python\python39\lib\site-packages\django-2.2.4.dist-info\*
+    c:\users\dara\appdata\local\programs\python\python39\lib\site-packages\django\*
+    c:\users\dara\appdata\local\programs\python\python39\scripts\django-admin.exe
+    c:\users\dara\appdata\local\programs\python\python39\scripts\django-admin.py
+Proceed (y/n)? y
+  Successfully uninstalled Django-2.2.4
+
+>>>>>>>>>>
+Dara@DESKTOP-PEADUN5 MINGW64 ~/Desktop
+$ pip show Django
+WARNING: Package(s) not found: Django
+
+
+
+
+
+
+
