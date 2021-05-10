@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\Dara\Desktop\Axsos Academy\python_stack\my_environments\py3Env"
+VIRTUAL_ENV="C:\Users\Dara\Desktop\Axsos-Academy\Python\python_stack\my_environments\py3Env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
