@@ -9,20 +9,13 @@
         h1{
             text-align: center;
         }
-        .parent{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .child {
+        div{
             width:100px;
             height:100px;
-            background-color: lightblue;
+            background-color: {{color_pick}};
             border: 2px solid black;
-            margin:20px;
-            
-            
-            
+            margin:0 auto;
+            display: inline-block;
           }
             
 
@@ -31,10 +24,9 @@
 </head>
 <body>
     <h1>Welcome!</h1>
-    <div class="parent">
-        <div class="child"></div>
-        <div class="child"></div>
-        <div class="child"></div>
-    </div>
+    {% for x in range(0,num_times): %}
+    <div></div>
+    {% endfor %}
+       
 </body>
 </html>
