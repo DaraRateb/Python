@@ -1,0 +1,15 @@
+h1{
+    margin: 0 auto;
+    padding:5px;
+    border: 2px solid green;
+    height:40px;
+    width:360px;
+}
+p{
+    margin: 0 auto;
+    padding:5px;
+    border:2px solid green;
+    font-size: 50px;
+    height: 75px;
+    width: 491px;
+}
