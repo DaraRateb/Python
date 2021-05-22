@@ -1,27 +1,31 @@
 from django.shortcuts import render,redirect
 import random 	  
 
-def dumnum(request):
-    request.session['dumnum']=random.randint(1, 100)
-    context={
-        "random_number":request.session['dumnum']
-    }
-    return render (request,'index.html',context)
+dumnum=random.randint(1, 100)
+def start(request):
+   
+    return render (request,'index.html')
 
 def guess(request):
-    if request.POST['number'] == request.session['dumnum']:
-       request.session['x']=0
-    elif request.POST['number']-request.session['dumnum']>5:
-        request.session['x']=5
-    elif request.POST['number']-request.session['dumnum']<=5:
-        request.session['x']=4
-    elif request.session['dumnum']-request.POST['number']>5:
-        request.session['x']=2
-    elif request.session['dumnum']-request.POST['number']<=5:
-        request.session['x']=1
+    random=request.session['dumnum']
     context={
-        "y":request.session['x']
+        'x':dumnum,
     }
-   
-    return render(request,'index.html',context)
+    number = int(request.POST['number'])
+    if number == random:
+        context={
+            'text':'You won, this is the number',
+            'color':'green'
+        }
+    elif number>random:
+        context={
+            'text':'Too high',
+            'color':'red'
+        }
+    elif number<random:
+        context={
+            'text':'Too Low',
+            'color':'red'
+        }
+    return render(request,'result.html',context)
 # Create your views here.

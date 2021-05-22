@@ -7,21 +7,15 @@
     <title>Great Number Game</title>
 </head>
 <body>
-    <form method="post">
-        {%csrf_token%}
-        <input type="hidden" name="number" value="{{random_number}}">
-        <input type="number" name="number" value="number">
-        {% if 'y=0' %}
-            <p>You won This is the number</p>
-        {%elif 'y=5' %}
-            <p>Too High</p>
-        {%elif 'y=4' %}
-            <p>High</p>
-        {%elif 'y=1' %}
-            <p>Two low</p>
-        {%elif 'y=2' %}
-            <p> low</p>
-        {% endif %}
-    </form>
+    <center>
+        <h1> Great Number Game</h1>
+        <h3>I'm thinking of a number between 1 and 100...</h3>
+        <h2>Can you guess what is it?</h2>
+        <form action="/result" method="POST">
+            {%csrf_token%}
+            <input type="number" name="number" value="number">
+            <button type="submit">Submit</button>
+        </form>
+    </center>
 </body>
 </html>

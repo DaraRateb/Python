@@ -2,6 +2,6 @@ from django.urls import path
 from . import views
 
 urlpatterns=[
-    path('',views.dumnum),
+    path('',views.start),
     path('result',views.guess)
 ]
