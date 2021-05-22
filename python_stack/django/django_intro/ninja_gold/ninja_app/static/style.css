@@ -1,0 +1,16 @@
+div{
+    height:180px;
+    width:200px;
+    display:inline-block;
+    border: 2px solid black;
+    text-align: center;
+
+}
+button{
+    height:45px;
+    width:85px;
+}
+textarea{
+    height:70px;
+    width:800px;
+}
