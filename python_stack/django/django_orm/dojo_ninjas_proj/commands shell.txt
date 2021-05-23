@@ -1,0 +1,80 @@
+Run the shell and import your models
+>>>from dojo_ninjas_app.models import *
+
+-------
+Query: Create 3 new dojos
+>>> first_dojo=Dojo.objects.create(name="lala", city="sisi", state="lasilasi")
+>>> first_dojo.name
+'lala'
+>>> second_dojo=Dojo.objects.create(name="soso",city="fifi",state="sofisofi")
+>>> third_dojo=Dojo.objects.create(name="riri", city="lolo", state="rilorilo")
+---------
+Delete the 3 dojos you just created
+>>> dojo_to_delete = Dojo.objects.get(id=1)
+>>> dojo_to_delete.delete()
+(1, {'dojo_ninjas_app.Ninjas': 0, 'dojo_ninjas_app.Dojo': 1})
+>>> dojo_to_delete=Dojo.objects.get(id=2)
+>>> dojo_to_delete.delete()
+(1, {'dojo_ninjas_app.Ninjas': 0, 'dojo_ninjas_app.Dojo': 1})
+>>> dojo_to_delete=Dojo.objects.get(id=3)
+>>> dojo_to_delete.delete()
+(1, {'dojo_ninjas_app.Ninjas': 0, 'dojo_ninjas_app.Dojo': 1})
+-------
+
+Create 3 more dojos
+>>> fourth_dojo=Dojo.objects.create(name="laila", city="Nablus", state="Palestine")
+>>> fifth_dojo=Dojo.objects.create(name="sameer", city="Ramallah", state="Palestine")
+>>> sixth_dojo=Dojo.objects.create(name="mohammad", city="malta", state="malta")
+---------
+Create 3 ninjas that belong to the first dojo
+>>> seventh_ninja=Ninjas.objects.create(first_name="coffee", last_name="table", dojokey=Dojo.objects.get(id=4))
+>>> eighth_ninja=Ninjas.objects.create(first_name="tes", last_name="chair", dojokey=Dojo.objects.get(id=4))
+>>> ninth_ninja=Ninjas.objects.create(first_name="keys", last_name="door", dojokey=Dojo.objects.get(id=4))
+---------
+
+Create 3 ninjas that belong to the second dojo
+>>>first_ninja=Ninjas.objects.create(first_name="saju", last_name="bolo", dojokey=Dojo.objects.get(id=5))
+>>>second_ninja=Ninjas.objects.create(first_name="lasi", last_name="daser", dojokey=Dojo.objects.get(id=5))
+>>>third_ninja=Ninjas.objects.create(first_name="school", last_name="flower", dojokey=Dojo.objects.get(id=5))
+--------
+Create 3 ninjas that belong to the third dojo
+>>> fourth_ninja=Ninjas.objects.create(first_name="book", last_name="pen", dojokey=Dojo.objects.get(id=6))
+>>> fifth_ninja=Ninjas.objects.create(first_name="desk", last_name="pencil", dojokey=Dojo.objects.get(id=6))
+>>> sixth_ninja=Ninjas.objects.create(first_name="paper", last_name="ruler", dojokey=Dojo.objects.get(id=6))
+---------
+
+Retrieve all the ninjas from the first dojo
+>>>ninja=Dojo.objects.get(id=4)
+>>>ninja.ninja.all()
+---------
+Retrieve all the ninjas from the last dojo
+>>> ninja=Dojo.objects.get(id=6)
+>>> ninja.ninja.all()
+--------
+
+Retrieve the last ninja's dojo
+>>> x=Ninjas.objects.get(id=9)
+>>>Dojo.objects.filter(ninja=x)
+--------
+
+
+ Create and run the migration files to update the table in your database. If needed, provide a default value of "old dojo"
+#exit the shell 
+>>>python manage.py makemigrations
+
+You are trying to add a non-nullable field 'desc' to dojo without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1
+Please enter the default value now, as valid Python
+>>> "old dojo"
+
+Migrations for 'dojo_ninjas_app':
+  dojo_ninjas_app\migrations\0002_dojo_desc.py
+    - Add field desc to dojo
+>>> python manage.py migrate
+
+---------
+Create a new dojo
+ seventh_dojo=Dojo.objects.create(name="reem", city="salfeet", state="palestine", desc="twenty years girl")
