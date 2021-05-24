@@ -113,6 +113,11 @@ Retrieve all the authors for the 3rd book
 >>> print(some_author)
 
 *****************************
+>>> this_book=Book.objects.get(id=3)
+>>> this_author=Author.objects.get(id=2)
+>>> this_book.authors.remove(this_author)
+>>> this_book.save()
+******************************
 Add the 5th author as one of the authors of the 2nd book
 >>> this_author=Author.objects.get(id=5)
 >>> this_book=Book.objects.get(id=2)
