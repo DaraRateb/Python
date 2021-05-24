@@ -1,0 +1,133 @@
+Create 5 books with the following names: C Sharp, Java, Python, PHP, Ruby
+>>> from books_authors_app.models import *
+>>> first_book=Book.objects.create(title="C Sharp", desc="C Programing language Book")
+>>> secound_book=Book.objects.create(title="Java", desc="Java Programming Language Book")
+>>> third_book=Book.objects.create(title="Python", desc="Python Programming Language Book")
+>>> fourth_book=Book.objects.create(title="PHP", desc="PHP Programming Language Book")
+>>> fifth_book=Book.objects.create(title="Ruby", desc="Ruby Programming Language Book")
+
+**************************
+Create 5 different authors: Jane Austen, Emily Dickinson, Fyodor Dostoevsky, William Shakespeare, Lau Tzu
+>>> first_author=Author.objects.create(first_name="Jane", last_name="Austen")
+>>> secound_author=Author.objects.create(first_name="Emily", last_name="Dickinson")
+>>> third_author=Author.objects.create(first_name="Fyodor", last_name="Dotosevsky")
+>>> fourth_author=Author.objects.create(first_name="William", last_name="Shakespeare")
+>>> fifth_author=Author.objects.create(first_name="Lau", last_name="Tzu")
+
+**************************
+Create and run the migration files to update the table in your database.
+>>python manage.py makemigrations
+You are trying to add a non-nullable field 'notes' to author without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> "--"
+Migrations for 'books_authors_app':
+  books_authors_app\migrations\0002_author_notes.py
+    - Add field notes to author
+
+**************************
+Change the name of the C Sharp book to C#
+>>> c=Book.objects.get(id=1)
+>>> c.title="C#"
+>>> c.save()
+
+**************************
+Change the first name of the 4th author to Bill
+>>> from books_authors_app.models import *
+>>> c=Author.objects.get(id=4)
+>>> c.first_name="Bill"
+>>> c.save()
+
+************************
+Assign the first author to the first 2 books
+>>> this_author=Author.objects.get(id=1)
+>>> this_book=Book.objects.get(id=1)
+>>> this_book.authors.add(this_author)
+>>> this_book.save()
+
+>>> this_book=Book.objects.get(id=2)
+>>> this_author=Author.objects.get(id=1)
+>>> this_book.authors.add(this_author)
+>>> this_book.save()
+
+**************************
+Assign the second author to the first 3 books
+>>>this_book=Book.objects.get(id=1)
+>>> this_author=Author.objects.get(id=2)
+>>> this_book.authors.add(this_author)
+>>> this_book.save()
+
+>>> this_book=Book.objects.get(id=2)
+>>> this_book.authors.add(this_author)
+>>> this_book.save()
+
+>>> this_book=Book.objects.get(id=3)
+>>> this_book.authors.add(this_author)
+>>> this_book.save()
+
+*************************
+Assign the third author to the first 4 books
+>>> this_author=Author.objects.get(id=3)
+>>> this_book=Book.objects.get(id=1)
+>>> this_book.authors.add(this_author)
+>>> this_book.save()
+>>> this_book=Book.objects.get(id=2)
+>>> this_book.authors.add(this_author)
+>>> this_book.save()
+>>> this_book=Book.objects.get(id=3)
+>>> this_book.authors.add(this_author)
+>>> this_book.save()
+>>> this_book=Book.objects.get(id=4)
+>>> this_book.authors.add(this_author)
+>>> this_book.save()
+
+************************
+ Assign the fourth author to the first 5 books (or in other words, all the books)
+>>> this_author=Author.objects.get(id=4)
+>>> this_book=Book.objects.get(id=1)
+>>> this_book.authors.add(this_author)
+>>> this_book.save()
+>>> this_book=Book.objects.get(id=2)
+>>> this_book.authors.add(this_author)
+>>> this_book.save()
+>>> this_book=Book.objects.get(id=3)
+>>> this_book.authors.add(this_author)
+>>> this_book.save()
+>>> this_book=Book.objects.get(id=4)
+>>> this_book.authors.add(this_author)
+>>> this_book.save()
+>>> this_book=Book.objects.get(id=5)
+>>> this_book.authors.add(this_author)
+>>> this_book.save()
+
+
+*************************
+Retrieve all the authors for the 3rd book
+>>> this_book=Book.objects.get(id=3)
+>>> some_author=Author.objects.filter(books=this_book)
+>>> print(some_author)
+
+*****************************
+Add the 5th author as one of the authors of the 2nd book
+>>> this_author=Author.objects.get(id=5)
+>>> this_book=Book.objects.get(id=2)
+>>> this_book.authors.add(this_author)
+>>> this_book.save()
+
+*********************************
+Find all the books that the 3rd author is part of
+>>> this_author=Author.objects.get(id=3)
+>>> this_book=Book.objects.filter(authors=this_author)
+>>> print(this_book)
+
+*******************************
+
+Find all the authors that contributed to the 5th book
+>>> this_book=Book.objects.get(id=5)
+>>> these_authors=Author.objects.filter(books=this_book)
+>>> print(these_authors)
