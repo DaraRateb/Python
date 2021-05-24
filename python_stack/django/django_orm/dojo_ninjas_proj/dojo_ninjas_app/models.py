@@ -4,6 +4,7 @@ class Dojo(models.Model):
     city=models.CharField(max_length=45)
     state=models.CharField(max_length=45)
     desc=models.CharField(max_length=45)
+    #list => ninja 
 # Create your models here.
 class Ninjas(models.Model):
     first_name=models.CharField(max_length=45)
