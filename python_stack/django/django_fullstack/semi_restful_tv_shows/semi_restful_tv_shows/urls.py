@@ -1,4 +1,4 @@
-"""books_authors_proj URL Configuration
+"""semi_restful_tv_shows URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
@@ -18,5 +18,5 @@ from django.urls import path,include
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('',include("books_authors_app.urls")),
+    path('',include("tv_shows_app.urls")),
 ]

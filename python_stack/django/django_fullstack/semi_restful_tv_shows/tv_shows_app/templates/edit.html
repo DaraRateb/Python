@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Show</title>
+</head>
+<body>
+    <h1>Edit show {{this_show1.id}}</h1>
+    <a href="/shows">Go Back</a>
+    <form action="/shows/{{this_show1.id}}/transit" method="POST">
+        {% csrf_token %}
+        Title <input type="text" name="title" id="title" value="{{this_show1.title}}"><br>
+        Network <input type="text" name="network" id="network" value="{{this_show1.network}}">
+        Release Date <input type="date" name="release_date" id="release_date" value="{{date}}"><br><br>
+        Description: <input type="text" name="description" id="description" value="{{this_show1.description}}"><br><br>
+        <input type="submit" value="update" >
+    </form>
+    <a href='/shows/{{this_show1.id}}'>Go to Show</a>
+</body>
+</html>
