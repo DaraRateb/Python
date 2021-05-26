@@ -1,7 +1,8 @@
-from django.http.response import HttpResponseRedirect
 from django.shortcuts import render,redirect
 from .models import Show
 from time import strftime
+from django.contrib import messages
+
 
 #This is the first page which containes the table
 def index(request):
@@ -21,14 +22,20 @@ def show_shows_id(request, id):
     return render (request,"tv_show.html",context)
 
 def tv_show(request):
-
     if request.method=="POST":
-        this_show = Show.objects.create(title=request.POST["title"], network=request.POST["network"],release_date=request.POST["release_date"],description=request.POST['description'])
-        context={
-            'shows':Show.objects.all(),
-            'this_show1': this_show,
-            }
-        return redirect(f'/shows/{this_show.id}')
+        errors = Show.objects.basic_validator(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)
+            return redirect('/shows/add')
+#add new show
+        else:
+            this_show = Show.objects.create(title=request.POST["title"], network=request.POST["network"],release_date=request.POST["release_date"],description=request.POST['description'])
+            context={
+                'shows':Show.objects.all(),
+                'this_show1': this_show,
+                }
+            return redirect(f'/shows/{this_show.id}')
     return redirect('/shows/new')
 
 #Edit Functions
@@ -49,24 +56,32 @@ def edit_show_id(request,id):
 
 def tv_show_edit(request,id):
     this_show =Show.objects.get(id=id)
-    # if request.method=="POST":
-    this_show.title=request.POST["title"]
-    this_show.network=request.POST["network"]
-    this_show.release_date=request.POST["release_date"]
-    this_show.description=request.POST["description"]
-    this_show.save()
+    #validator code
+    errors = Show.objects.basic_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect(f'/shows/{this_show.id}/edit')
+    # edit queries
+    else:
+        this_show.title=request.POST["title"]
+        this_show.network=request.POST["network"]
+        this_show.release_date=request.POST["release_date"]
+        this_show.description=request.POST["description"]
+        this_show.save()
 
-    context={
-        'shows':Show.objects.all(),
-        'this_show1': this_show,
-        }
-    return redirect(f'/shows/{this_show.id}')
+        context={
+            'shows':Show.objects.all(),
+            'this_show1': this_show,
+            }
+        return redirect(f'/shows/{this_show.id}')
     # return redirect(f'/shows/{this_show.id}/edit')
 
 ###Delete functions
 def destroy(request,id):
-    # if request.method=="POST":
         this_show1=Show.objects.get(id=id)
         this_show1.delete()
         return redirect('/shows')
 
+
+#Data validation
