@@ -8,5 +8,8 @@
 </head>
 <body>
     <h1>Welcome {{request.session.first_name}}</h1>
+    <form action="/logout">
+        <input type="submit" name="logout" value="Log Out">
+    </form>
 </body>
 </html>

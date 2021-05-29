@@ -12,7 +12,6 @@ class ShowManager(models.Manager):
             errors["description"] = "Show's description should be at least 10 characters"
         return errors
 
-
 class Show(models.Model):
     title=models.CharField(max_length=225)
     network=models.CharField(max_length=225)
