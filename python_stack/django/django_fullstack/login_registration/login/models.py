@@ -45,5 +45,5 @@ def create_user(info):
 
 
 def get_user(info):
-    return  Users.objects.get(email=info["email"])
+    return  Users.objects.filter(email=info["email"])
 

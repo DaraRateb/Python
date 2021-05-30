@@ -1,20 +1,32 @@
 from django.shortcuts import render,redirect
 from .models import Book,Author
+from . import models
+
 def index(request):
     context= {
         "xbook":Book.objects.all()
     }
     return render(request,"addbook.html",context)
 
+def book_details(request,id):
+    xbook=Book.objects.filter(id=id)
+    # xauthor=xbook.authors.all()
+    context={
+        "xbook":xbook,
+        "xauthor":xauthor,
+    }
+    return render(request,"bookdetails.html",context)
+
 # Create your views here.
-def addbook(request):
+def add_book(request):
     if request.method=='POST':
-            Book.objects.create(title=request.POST["title"],desc=request.POST["description"])
+        models.add_book(request.POST)
     return redirect("/")
 
 
 
-def addauthor(request):
+def add_author(request):
     if request.method=='POST':
-        Author.objects.create(first_name=request.POST['first_name'],last_name=request.POST['last_name'],notes=request.POST['notes'])
+        models.add_author(request.POST)
     return redirect("/")
+

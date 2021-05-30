@@ -7,7 +7,16 @@
     <title>Book Details</title>
 </head>
 <body>
-    {%for i in xbook%}
+    {%for i in xbook %}
     <h1>{{i.title}}</h1>
+    <h4>ID: {{i.id}}</h4>
+    <h4>Description:</h4>{{i.description}}
+    <h4>Authors:</h4>
+    <ul>
+        {% for j in xauthor %}
+        <li>{{j.authors}}</li>
+        {%endfor%}
+    </ul>
+    
 </body>
 </html>

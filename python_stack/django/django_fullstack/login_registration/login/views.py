@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from .models import Users
 from . import models
 from django.contrib import messages
+import bcrypt
 
 
 
@@ -35,8 +36,10 @@ def login(request):
             if request.POST["login_type"]=="login":
                 user=models.get_user(request.POST)
                 if user:
-                    if 'first_name' not in request.session:
-                        request.session['first_name']=user.first_name
+                    # if request.POST["password"] == user[0].password:
+                    if bcrypt.checkpw(request.POST['password'].encode(), user[0].password.encode()):
+                        if 'first_name' not in request.session:
+                            request.session['first_name']=user[0].first_name
                     return redirect("/success")
                 else:
                     return redirect('/')
